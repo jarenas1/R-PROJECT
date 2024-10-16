@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,6 +39,17 @@ public class UserEntity {
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})}  //Indicamos columnas unicas
     )
     private List<RoleEntity> roles;
+
+    //MANY USERS HAS MANY PROYJECTS
+    @JsonIgnoreProperties({"users"})
+    @ManyToMany(fetch= FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "project_id"})}
+    )
+    private List<ProjectEntity> projects = new ArrayList<>();
 
     //CHECK IF IS ADMIN
     @Transient //evita que se cree esta columna en la db

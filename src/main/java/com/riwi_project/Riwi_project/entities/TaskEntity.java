@@ -16,6 +16,7 @@ public class TaskEntity {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @OneToMany
-    UserEntity userEntity;
+    @ManyToOne
+       @JoinColumn(name = "id_task")
+    private TaskEntity taskEntity;
 }
