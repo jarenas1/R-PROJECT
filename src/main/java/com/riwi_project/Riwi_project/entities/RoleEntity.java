@@ -9,6 +9,8 @@ import java.util.List;
 
 import jakarta.persistence.GeneratedValue;
 
+@Entity
+@Table(name = "roles")
 public class RoleEntity {
 
     @Id
