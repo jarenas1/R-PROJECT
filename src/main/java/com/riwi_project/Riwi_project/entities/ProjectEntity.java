@@ -26,4 +26,36 @@ public class ProjectEntity {
 
     @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "taskEntity")
     List<TaskEntity> tasks = new ArrayList<>();
+
+    public @NotBlank Date getDeadLine() {
+        return deadLine;
+    }
+
+    public void setDeadLine(@NotBlank Date deadLine) {
+        this.deadLine = deadLine;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public @NotBlank String getName() {
+        return name;
+    }
+
+    public void setName(@NotBlank String name) {
+        this.name = name;
+    }
+
+    public List<TaskEntity> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<TaskEntity> tasks) {
+        this.tasks = tasks;
+    }
 }
