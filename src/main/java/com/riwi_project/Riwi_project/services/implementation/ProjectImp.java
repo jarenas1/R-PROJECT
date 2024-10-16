@@ -36,6 +36,7 @@ public class ProjectImp implements ProjectService {
 
         optionalProject.ifPresentOrElse(projectEntity -> {
             projectRepository.delete(optionalProject.get());
+            return;
         },()->{
             throw new ProjectNotFoundException("No se pudo encontrar el proyecto a eliminar");
         });
