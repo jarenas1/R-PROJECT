@@ -40,7 +40,7 @@ public class UserEntity {
     )
     private List<RoleEntity> roles;
 
-    //MANY USERS HAS MANY PROYJECTS
+    //MANY USERS HAS MANY PROJECTS
     @JsonIgnoreProperties({"users"})
     @ManyToMany(fetch= FetchType.EAGER)
     @JoinTable(
@@ -108,5 +108,13 @@ public class UserEntity {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<ProjectEntity> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<ProjectEntity> projects) {
+        this.projects = projects;
     }
 }

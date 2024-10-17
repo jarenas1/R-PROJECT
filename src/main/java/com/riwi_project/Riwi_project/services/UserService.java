@@ -12,4 +12,6 @@ public interface UserService {
     Optional<UserEntity> findById(Long id);
 
     List<UserEntity> findAll();
+
+
 }

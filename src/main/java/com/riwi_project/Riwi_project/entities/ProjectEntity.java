@@ -1,6 +1,7 @@
 package com.riwi_project.Riwi_project.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -26,6 +27,10 @@ public class ProjectEntity {
 
     @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "taskEntity")
     List<TaskEntity> tasks = new ArrayList<>();
+
+    @JsonIgnoreProperties({"projects"}) //Avoid infity cicles in the responses
+    @ManyToMany(mappedBy = "projects")
+    private List<UserEntity> users = new ArrayList<>();
 
     public @NotBlank Date getDeadLine() {
         return deadLine;
@@ -57,5 +62,13 @@ public class ProjectEntity {
 
     public void setTasks(List<TaskEntity> tasks) {
         this.tasks = tasks;
+    }
+
+    public List<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserEntity> users) {
+        this.users = users;
     }
 }
