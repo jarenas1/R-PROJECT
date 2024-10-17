@@ -1,6 +1,14 @@
 package com.riwi_project.Riwi_project.controllers.handlerException;
 
+import com.riwi_project.Riwi_project.entities.Error;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.util.Date;
 
 @RestControllerAdvice
 public class HandlerExceptionController {
@@ -10,7 +18,7 @@ public class HandlerExceptionController {
         //CREAMOS EL ERROR QUE DEVOLVEREMOS
         Error error = new Error();
         error.setDate(new Date());
-        error.setError("Error añadiendo más peso al palet");
+        error.setError("Error añadiendo el usuario");
         error.setMessage(ex.getMessage());
         error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 

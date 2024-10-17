@@ -29,7 +29,7 @@ public class ProjectController {
         //List to save the dtos
         List<ProjectDto> projectsDtos = new ArrayList<>();
 
-        //changing the entities
+        //changing the entitiesa
         for(ProjectEntity project:projectEntities){
             ProjectDto projectDto = new ProjectDto();
 
