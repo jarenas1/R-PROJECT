@@ -1,5 +1,6 @@
 package com.riwi_project.Riwi_project.services.implementation;
 
+import com.riwi_project.Riwi_project.controllers.Exceptions.RoleNotFoundException;
 import com.riwi_project.Riwi_project.entities.RoleEntity;
 import com.riwi_project.Riwi_project.entities.UserEntity;
 import com.riwi_project.Riwi_project.repositories.RoleRepository;
@@ -32,11 +33,23 @@ public class UserImp implements UserService {
         //Check if role was founded
         role.ifPresentOrElse(roleEntity ->{
             roles.add(roleEntity);
+
+            if (userEntity.isAdmin()){
+                Optional<RoleEntity> roleAdmin = roleRepository.findByName("ROLE_ADMIN");
+
+                roleAdmin.ifPresent(roleA-> roles.add(roleA));
+            }
             return;
         },()->{
-            throw
+            throw new RoleNotFoundException("No se pudo encontrar el rol, hay problemas en la db");
         } );
-        return null;
+
+        //Ser the roles to the user
+        userEntity.setRoles(roles);
+
+        //encode the password
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+        return userRepository.save(userEntity);
     }
 
     @Override
