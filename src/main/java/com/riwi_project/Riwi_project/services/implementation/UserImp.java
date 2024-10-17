@@ -7,6 +7,7 @@ import com.riwi_project.Riwi_project.repositories.RoleRepository;
 import com.riwi_project.Riwi_project.repositories.UserRepository;
 import com.riwi_project.Riwi_project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -20,6 +21,9 @@ public class UserImp implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
@@ -53,12 +57,12 @@ public class UserImp implements UserService {
     }
 
     @Override
-    public Optional<UserEntity> findById(String id) {
-        return Optional.empty();
+    public Optional<UserEntity> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     @Override
     public List<UserEntity> findAll() {
-        return List.of();
+        return userRepository.findAll();
     }
 }

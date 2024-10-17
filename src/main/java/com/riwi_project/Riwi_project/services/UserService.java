@@ -9,7 +9,7 @@ public interface UserService {
 
     UserEntity save (UserEntity userEntity);
 
-    Optional<UserEntity> findById(String id);
+    Optional<UserEntity> findById(Long id);
 
     List<UserEntity> findAll();
 }
