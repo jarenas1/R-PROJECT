@@ -6,12 +6,12 @@ import com.riwi_project.Riwi_project.entities.dto.response.ProjectDto;
 import com.riwi_project.Riwi_project.entities.dto.response.UserDto;
 import com.riwi_project.Riwi_project.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -90,4 +90,16 @@ public class ProjectController {
         }
         return projectDtos;
     }
+
+    //VALIDACION
+    private ResponseEntity<?> validation(BindingResult result) {
+        //CREACION DEL ERROR
+        Map<String, String> errors = new HashMap<>();
+        //Iteramos errores para añadirlos al map
+        result.getFieldErrors().forEach(fieldError -> {
+            errors.put(fieldError.getField(), "El campo "+fieldError.getField()+" "+ fieldError.getDefaultMessage());
+        });
+        return ResponseEntity.badRequest().body(errors);
+    }
+
 }
