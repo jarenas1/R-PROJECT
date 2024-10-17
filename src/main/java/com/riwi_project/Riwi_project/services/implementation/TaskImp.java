@@ -5,10 +5,12 @@ import com.riwi_project.Riwi_project.entities.TaskEntity;
 import com.riwi_project.Riwi_project.repositories.TaskRepository;
 import com.riwi_project.Riwi_project.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TaskImp implements TaskService {
 
     @Autowired

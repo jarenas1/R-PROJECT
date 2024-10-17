@@ -5,10 +5,12 @@ import com.riwi_project.Riwi_project.entities.ProjectEntity;
 import com.riwi_project.Riwi_project.repositories.ProjectRepository;
 import com.riwi_project.Riwi_project.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProjectImp implements ProjectService {
 
     @Autowired
