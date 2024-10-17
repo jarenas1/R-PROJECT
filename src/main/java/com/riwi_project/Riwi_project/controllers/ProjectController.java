@@ -5,6 +5,7 @@ import com.riwi_project.Riwi_project.entities.UserEntity;
 import com.riwi_project.Riwi_project.entities.dto.response.ProjectDto;
 import com.riwi_project.Riwi_project.entities.dto.response.UserDto;
 import com.riwi_project.Riwi_project.services.ProjectService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
@@ -13,6 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@CrossOrigin(originPatterns = "*") //TODAS LAS RUTAS DE FRONT TIENEN ACCESO
+@Tag(
+        name = "Perritos guaugau",
+        description = "probando el swagger de riwi-project"
+
+)
 @RestController
 @RequestMapping("/api/v1")
 public class ProjectController {

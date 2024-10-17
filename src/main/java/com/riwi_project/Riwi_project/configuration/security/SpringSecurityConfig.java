@@ -51,8 +51,10 @@ public class SpringSecurityConfig {
                                 "/swagger-resources/**",
                                 "/webjars/**")
                         .permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/users").permitAll()
-                        .requestMatchers(HttpMethod.POST,"api/users/register").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/V1").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/V1").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/V1/add").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.DELETE,"/api/V1/{id]").hasRole("ADMIN")
 //                        .requestMatchers(HttpMethod.POST,"api/users").hasRole("ADMIN") //ACCESIBLE SOLO SI TIENE EL ROL ADMIN
                         .requestMatchers(HttpMethod.POST,"api/products").hasRole("ADMIN") //SPRINGBOOT ELIMINA EL ROLE_
                 //TENDREMOS 2 ENDPOINTS, LISTAR Y VER POR ID, Y PONDREMOS ACCESIBLE POR VARIOS USUARIO
