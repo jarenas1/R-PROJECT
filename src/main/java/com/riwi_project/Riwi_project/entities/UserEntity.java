@@ -40,7 +40,7 @@ public class UserEntity {
     )
     private List<RoleEntity> roles;
 
-    //MANY USERS HAS MANY PROYJECTS
+    //MANY USERS HAS MANY PROJECTS
     @JsonIgnoreProperties({"users"})
     @ManyToMany(fetch= FetchType.EAGER)
     @JoinTable(

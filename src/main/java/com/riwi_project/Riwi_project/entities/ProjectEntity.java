@@ -27,6 +27,9 @@ public class ProjectEntity {
     @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "taskEntity")
     List<TaskEntity> tasks = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "projects")
+    private List<UserEntity> users = new ArrayList<>();
+
     public @NotBlank Date getDeadLine() {
         return deadLine;
     }
